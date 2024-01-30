@@ -94,6 +94,11 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 6328893956339823286}
   TopClamp: 90
   BottomClamp: -90
+  _isWallJumping: 0
+  _wallJumpCount: 0
+  _prefabBumperCpt: {fileID: 1340861266982385708, guid: 8961cc575cd0b3a45af6703ca406c6c9, type: 3}
+  _capacityDurationTimer: 5
+  _capacityLoadValue: 0
 --- !u!114 &6328893954451151413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,8 +425,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6328893955437262484}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.45388937, y: -0.20275778, z: 0.106876135, w: 0.86107564}
-  m_LocalPosition: {x: -3.1309438, y: 1.6342587, z: 8.328264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
