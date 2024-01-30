@@ -64,7 +64,13 @@ namespace StarterAssets
 		[SerializeField] private bool _isWallJumping = false;
 
 		[SerializeField] private int _wallJumpCount = 0;
+		[SerializeField] private GameObject _prefabBumperCpt;
 
+// Capacity
+		[SerializeField] private bool _capacity_isUsed = false;
+		private float _capacityCooldownTimer = 0.0f;
+		[SerializeField] private float _capacityDurationTimer = 5.0f;
+		public float _capacityLoadValue = 0.0f;
 
 	
 		private PlayerInput _playerInput;
@@ -107,12 +113,41 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-			// CapacityCooldown();
+			CapacityCooldown();
+			CapacityAbility();
+			Shoot();
 		}
 
 		private void LateUpdate()
 		{
 			CameraRotation();
+		}
+
+		private void Shoot()
+		{
+			if (Input.GetKey(KeyCode.Mouse0)) {
+				RaycastHit hit;
+				if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 100.0f))
+				{
+
+					Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 2.0f, true);
+					Debug.Log(hit.transform.name);
+				}
+			}
+		}
+
+		private void CapacityAbility()
+		{
+			if (Input.GetKey(KeyCode.F))
+			{
+				if (_capacity_isUsed == false)
+				{
+					_capacity_isUsed = true;
+					_capacityCooldownTimer = 0.0f;
+					_capacityLoadValue = 0.0f;
+					Instantiate(_prefabBumperCpt, transform.position, Quaternion.identity);
+				}
+			}
 		}
 
 		private void GroundedCheck()
@@ -273,10 +308,6 @@ namespace StarterAssets
 				_isWallJumping = true;
 		}
 
-		private bool _capacity_isUsed = false;
-		private float _capacityCooldownTimer = 0.0f;
-		[SerializeField] private float _capacityDurationTimer = 5.0f;
-		public float _capacityLoadValue = 0.0f;
 
 		private void CapacityCooldown()
 		{
