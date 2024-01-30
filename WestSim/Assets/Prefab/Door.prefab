@@ -232,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6148228686060775534}
   uiIndicator: {fileID: 8454435001476979267}
+  breakableWall: {fileID: 6672485585537371767}
   open: 0
 --- !u!1 &8454435001476979267
 GameObject:
@@ -345,3 +346,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7104612562502561244, guid: 644534365d4faa345952ba9cc47fa6db, type: 3}
   m_PrefabInstance: {fileID: 7412553986654448131}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6672485585537371767 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4199537221997372532, guid: 644534365d4faa345952ba9cc47fa6db, type: 3}
+  m_PrefabInstance: {fileID: 7412553986654448131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08611aa1b012af48958512c27a8f2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
