@@ -1,47 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SC_Enemy : MonoBehaviour
 {
-    /*
-    [SerializeField]
-    private Transform[] waypoints;
+    [SerializeField] private int life = 100;
 
-    [SerializeField]
-    private float moveSpeed = 2f;
-
-    [SerializeField]
-    private int waypointIndex = 0;
-
-    private void Start()
+    public void TakeDamage(int _dmgTotake)
     {
-        if (waypoints.Length == 0) {
-            Debug.LogError("Il y a pas de way point dans enemy");
-        }
-        else {
-            transform.position = waypoints[0].transform.position;
+        life -= _dmgTotake;
+        if (life <= 0) {
+            // Rotatetoward
         }
     }
-    private void Update()
-    {
-        Move();
-    }
 
-    private void Move()
-    {
-        if (waypointIndex <= waypoints.Length - 1) {
-
-            transform.position = Vector2.MoveTowards(transform.position,
-               waypoints[waypointIndex].transform.position,
-               moveSpeed * Time.deltaTime);
-
-            if (transform.position == waypoints[waypointIndex].transform.position) {
-                waypointIndex += 1;
-            }
-        }
-        else {
-            Debug.Log("Finit");
-        }
-    }*/
 }
