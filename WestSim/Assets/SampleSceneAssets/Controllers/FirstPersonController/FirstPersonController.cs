@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace StarterAssets
 {
@@ -71,6 +72,10 @@ namespace StarterAssets
 		private float _capacityCooldownTimer = 0.0f;
 		[SerializeField] private float _capacityDurationTimer = 5.0f;
 		public float _capacityLoadValue = 0.0f;
+		[SerializeField] Slider _capacitySlider;
+		[SerializeField] LayerMask bumpLayer;
+
+		public float _bumpSpeed = 0f;
 
 // Weapon
 		[SerializeField] private GameObject _prefabWeapon;
@@ -183,17 +188,30 @@ namespace StarterAssets
 
 		private void CapacityAbility()
 		{
-			if (Input.GetKey(KeyCode.F))
+			if (Input.GetKeyDown(KeyCode.F))
 			{
+				RaycastHit hit;
 				if (_capacity_isUsed == false)
 				{
-					_capacity_isUsed = true;
-					_capacityCooldownTimer = 0.0f;
-					_capacityLoadValue = 0.0f;
-					Instantiate(_prefabBumperCpt, transform.position, Quaternion.identity);
+					if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, _rangeWeapon, bumpLayer))
+					{
+                        Debug.Log(hit.transform.name);
+                        _capacity_isUsed = true;
+                        _capacityCooldownTimer = 0.0f;
+                        _capacityLoadValue = 0.0f;
+                        Instantiate(_prefabBumperCpt, hit.point, Quaternion.Euler(hit.normal));
+                    }
 				}
 			}
-		}
+
+			if (_capacityLoadValue == 0)
+			{
+				_capacitySlider.value = 0;
+			} else
+			{
+                _capacitySlider.value = _capacityLoadValue;
+            }
+        }
 
 		private void GroundedCheck()
 		{
@@ -355,8 +373,20 @@ namespace StarterAssets
 			}
 		}
 
+        private void OnTriggerEnter(Collider other)
+        {
+			/*
+            if (other.CompareTag("Bumper"))
+			{
+				Quaternion rotation = other.transform.rotation;
+				Vector3 bumpForce = rotation.eulerAngles;
+				_controller.Move(bumpForce * (_speed * -_bumpSpeed * Time.deltaTime));
+				Debug.Log("bumper trigger");
+			}
+			*/
+        }
 
-		private void CapacityCooldown()
+        private void CapacityCooldown()
 		{
 			if (_capacity_isUsed == true) {
 				_capacityCooldownTimer += Time.deltaTime;
