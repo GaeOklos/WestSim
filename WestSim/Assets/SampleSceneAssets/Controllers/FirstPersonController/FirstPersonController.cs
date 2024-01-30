@@ -1,5 +1,7 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace StarterAssets
 {
@@ -71,7 +73,9 @@ namespace StarterAssets
 		private float _capacityCooldownTimer = 0.0f;
 		[SerializeField] private float _capacityDurationTimer = 5.0f;
 		public float _capacityLoadValue = 0.0f;
+		public Slider bumperUICD;
 
+		public LayerMask shootLayer;
 	
 		private PlayerInput _playerInput;
 		private CharacterController _controller;
@@ -140,12 +144,22 @@ namespace StarterAssets
 		{
 			if (Input.GetKey(KeyCode.F))
 			{
+
 				if (_capacity_isUsed == false)
 				{
-					_capacity_isUsed = true;
-					_capacityCooldownTimer = 0.0f;
-					_capacityLoadValue = 0.0f;
-					Instantiate(_prefabBumperCpt, transform.position, Quaternion.identity);
+                    RaycastHit hit;
+                    if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 100.0f, shootLayer))
+                    {
+						if (hit.collider.gameObject != this)
+						{
+                            Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 2.0f, true);
+                            Debug.Log(hit.transform.name);
+                            _capacity_isUsed = true;
+                            _capacityCooldownTimer = 0.0f;
+                            _capacityLoadValue = 0.0f;
+                            Instantiate(_prefabBumperCpt, hit.point, Quaternion.LookRotation(hit.normal, Vector3.left));
+                        }
+                    }
 				}
 			}
 		}
@@ -311,6 +325,7 @@ namespace StarterAssets
 
 		private void CapacityCooldown()
 		{
+			bumperUICD.value = _capacityLoadValue;
 			if (_capacity_isUsed == true) {
 				_capacityCooldownTimer += Time.deltaTime;
 				if (_capacityCooldownTimer >= _capacityDurationTimer) {
@@ -318,6 +333,10 @@ namespace StarterAssets
 					_capacityCooldownTimer = 0.0f;
 				}
 				_capacityLoadValue = _capacityCooldownTimer / _capacityDurationTimer;
+			}
+			else
+			{
+				_capacityLoadValue = 1f;
 			}
 		}
 	}
