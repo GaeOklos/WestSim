@@ -9,7 +9,7 @@ public class Billboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cameraPlayer = Camera.main;
     }
 
     // Update is called once per frame
