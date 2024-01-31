@@ -159,7 +159,8 @@ GameObject:
   - component: {fileID: 7578277258330274064}
   - component: {fileID: 9079250762346107410}
   - component: {fileID: 6220692574599208915}
-  - component: {fileID: 2254960170205900458}
+  - component: {fileID: 2836818873024391267}
+  - component: {fileID: 8967898192051213467}
   m_Layer: 0
   m_Name: Bumper
   m_TagString: Bumper
@@ -232,8 +233,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2254960170205900458
-CapsuleCollider:
+--- !u!114 &2836818873024391267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110583441478855823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5824e60b80e9fad4b8b91ebe063c7cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8967898192051213467
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -250,8 +263,6 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 22.16, z: 1.0000005}
+  m_Center: {x: 0.000000059604645, y: 8.33, z: -0.00000008940699}
