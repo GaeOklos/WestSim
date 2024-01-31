@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -32,6 +33,7 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private bool _isWallJumping = false;
     [SerializeField] private GameObject _previousWall;
 
+    private bool debugWall = false;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -51,6 +53,8 @@ public class SC_Movement : MonoBehaviour
 
     void Update()
     {
+        FindWall();
+
         // OctaneCapacity
         if (Input.GetKeyDown(KeyCode.C)) {
             LaunchOctaneCapacity();
@@ -145,30 +149,28 @@ public class SC_Movement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void FindWall()
     {
-        Debug.Log(other.gameObject.name);
-        if (other.gameObject.CompareTag("Wall"))
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
+        int i = 0;
+        while (i < hitColliders.Length)
         {
-            if (other.gameObject != _previousWall)
-            {
-                _previousWall = other.gameObject;
-                _isWallJumping = true;
+            if (hitColliders[i].gameObject.CompareTag("Wall")) {
+                if (hitColliders[i].gameObject != _previousWall) {
+                    _previousWall = hitColliders[i].gameObject;
+                    _isWallJumping = true;
+                    debugWall = true;
+                }
             }
+            i++;
         }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            if (collision.gameObject == _previousWall)
-            {
-                _previousWall = null;
-                _isWallJumping = false;
-            }
+        if (debugWall == false) {
+            _isWallJumping = false;
+            _previousWall = null;
         }
+        debugWall = false;
     }
+    
 
     public void Bumper()
     {

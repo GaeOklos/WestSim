@@ -17,7 +17,7 @@ public class SC_Shoot : MonoBehaviour
     [SerializeField] private GameObject _impactEffectWallWeapon;
 
     // Fist
-    private GameObject _spawnCollider;
+    [SerializeField] private GameObject _spawnCollider;
     [SerializeField] private int _damageFist = 10;
     [SerializeField] private float _rangeFist = 1.0f;
     [SerializeField] private ParticleSystem _muzzleFlashFist;
