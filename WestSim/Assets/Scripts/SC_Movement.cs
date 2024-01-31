@@ -8,24 +8,27 @@ using UnityEngine.UI;
 public class SC_Movement : MonoBehaviour
 {
     [Header("Camera")]
-    public Camera playerCamera;
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private float lookSpeed = 2f;
+    [SerializeField] private float lookXLimit = 45f;
 
     [Header("Basic")]
-    public float walkSpeed = 5f;
-    public float runSpeed = 10f;
-    public float gravity = 10f;
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float runSpeed = 10f;
+    [SerializeField] private float gravity = 10f;
 
     private float curSpeedX;
     private float curSpeedY;
     
     [Header("MaxSprintOctane")]
-    public float _sprintOctane = 15f;
+    [SerializeField] private float _sprintOctane = 15f;
+    [SerializeField] private bool _OctaneTimerOn = false;
     [SerializeField] private bool _Octane_isUsed = false;
+    private float _OctaneTimeUsing = 0.0f;
     private float _OctaneCooldownTimer = 0.0f;
-    [SerializeField] private float _OctaneDurationTimer = 5.0f;
-    public float _OctaneLoadValue = 0.0f;
+    [SerializeField] private float _OctaneDurationCooldown = 10.0f;
+    [SerializeField] private float _OctaneDuration = 5.0f;
+    private float _OctaneLoadValue = 1.0f;
     public Slider _sliderUICD;
 
 
@@ -47,6 +50,7 @@ public class SC_Movement : MonoBehaviour
     private Vector3 _bumpVectorDirector;
     private Vector3 _bumpVectorSpeedCurrent;
     [SerializeField] private float _ForceYBumperInGround = 20f;
+
 
     [Header("Debug")]
     public bool canMove = true;
@@ -70,6 +74,7 @@ public class SC_Movement : MonoBehaviour
             LaunchOctaneCapacity();
         }
         OctaneCapacityCooldown();
+        OctaneCapacityTimeUse();
 
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -151,28 +156,42 @@ public class SC_Movement : MonoBehaviour
     }
     private void LaunchOctaneCapacity()
     {
-        if (_Octane_isUsed == false)
+        if (_OctaneTimerOn == false)
         {
             _Octane_isUsed = true;
+            _OctaneTimerOn = true;
             _OctaneCooldownTimer = 0.0f;
             _OctaneLoadValue = 0.0f;
         }
     }
     private void OctaneCapacityCooldown()
     {
-        if (_sliderUICD != null) {
+        if (_sliderUICD != null)
             _sliderUICD.value = _OctaneLoadValue;
-        }
         else
-            Debug.Log("Error, slider pas int�gr�");
+            Debug.LogError("Error, slider pas int�gr�");
 
-        if (_Octane_isUsed == true) {
+        if (_OctaneTimerOn == true)
+        {
             _OctaneCooldownTimer += Time.deltaTime;
-            _OctaneLoadValue = _OctaneCooldownTimer / _OctaneDurationTimer;
-            if (_OctaneCooldownTimer >= _OctaneDurationTimer) {
-                _Octane_isUsed = false;
+            _OctaneLoadValue = _OctaneCooldownTimer / _OctaneDurationCooldown;
+            if (_OctaneCooldownTimer >= _OctaneDurationCooldown)
+            {
+                _OctaneTimerOn = false;
                 _OctaneCooldownTimer = 0.0f;
                 _OctaneLoadValue = 1f;
+            }
+        }
+    }
+    private void OctaneCapacityTimeUse()
+    {
+        if (_Octane_isUsed == true)
+        {
+            _OctaneTimeUsing += Time.deltaTime;
+            if (_OctaneTimeUsing >= _OctaneDuration)
+            {
+                _Octane_isUsed = false;
+                _OctaneTimeUsing = 0.0f;
             }
         }
     }
@@ -211,7 +230,7 @@ public class SC_Movement : MonoBehaviour
             _bumpVectorSpeedCurrent.y = _ForceYBumperInGround;
         }
         moveDirection += _bumpVectorSpeedCurrent;
-        Debug.Log(_bumpVectorSpeedCurrent);
+        // Debug.Log(_bumpVectorSpeedCurrent);
 
         _isBumped = true;
         // bumpVector = ;
