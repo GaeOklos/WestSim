@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 3263849693089231835}
   m_Layer: 2
   m_Name: PC
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,9 +414,10 @@ MonoBehaviour:
   runSpeed: 8
   gravity: 17
   _sprintOctane: 12
+  _OctaneTimerOn: 0
   _Octane_isUsed: 0
-  _OctaneDurationTimer: 5
-  _OctaneLoadValue: 0
+  _OctaneDurationCooldown: 10
+  _OctaneDuration: 5
   _sliderUICD: {fileID: 0}
   jumpPower: 6
   _isWallJumping: 0
