@@ -35,8 +35,15 @@ public class SC_Movement : MonoBehaviour
 
     private bool debugWall = false;
 
+
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
+
+    [Header("Bumper")]
+    private float _bumpForce = 10.0f;
+    [SerializeField] private bool _isBumped = false;
+    private Vector3 _bumpVectorDirector;
+    private Vector3 _bumpVectorSpeedCurrent;
 
     [Header("Debug")]
     public bool canMove = true;
@@ -69,35 +76,39 @@ public class SC_Movement : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         // Appel de fonction movement Walk or Sprint or Octane
         Vector2 movementInput = SprintOrWalk();
-        moveDirection = (forward * movementInput.x) + (right * movementInput.y);
-        
 
-
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpPower;
-            // Debug.Log(moveDirection);
+        DecreaseSpeedBumper();
+        if (_isBumped == false) {
+            moveDirection = (forward * movementInput.x) + (right * movementInput.y);
         }
-        else if (Input.GetButton("Jump") && canMove && _isWallJumping)
-        {
+        else {
+            moveDirection = (forward * movementInput.x) + (right * movementInput.y) + _bumpVectorSpeedCurrent;
+        }
+
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded) {
+            moveDirection.y = jumpPower;
+        }
+        else if (Input.GetButton("Jump") && canMove && _isWallJumping) {
             _isWallJumping = false;
             moveDirection.y = jumpPower;
         }
-        else
-        {
+        else {
             moveDirection.y = movementDirectionY;
         }
 
-        if (!characterController.isGrounded)
-        {
+        if (!characterController.isGrounded) {
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
         characterController.Move(moveDirection * Time.deltaTime);
+/////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        if (characterController.isGrounded) {
+            _isBumped = false;
+        }
 
-
-        if (canMove)
-        {
+        if (canMove) {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -108,8 +119,15 @@ public class SC_Movement : MonoBehaviour
             moveDirection.x = 0;
             moveDirection.z = 0;
         }
-
     }
+
+    private void DecreaseSpeedBumper()
+    {
+        if (_isBumped == true) {
+            _bumpVectorSpeedCurrent -= _bumpVectorSpeedCurrent * Time.deltaTime;
+        }
+    }
+
     private Vector2 SprintOrWalk()
     {
         // Press Left Shift to run
@@ -172,10 +190,20 @@ public class SC_Movement : MonoBehaviour
     }
     
 
-    public void Bumper()
+    public void Bumper(Vector3 _vectorDirector)
     {
-        // moveDirection += Vector de la propulsion;
+        _bumpVectorDirector = _vectorDirector;
+        _bumpVectorSpeedCurrent = _bumpVectorDirector * _bumpForce;
+        if (_bumpVectorSpeedCurrent.y <= 0) {
+            _bumpVectorSpeedCurrent.y = 7;
+        }
+        //else if (_bumpVectorSpeedCurrent.y <=) {
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        //}
+        moveDirection += _bumpVectorSpeedCurrent;
+        Debug.Log(_bumpVectorSpeedCurrent);
+
+        _isBumped = true;
+        // bumpVector = ;
     }
 }
