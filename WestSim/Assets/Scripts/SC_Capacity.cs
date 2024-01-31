@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SC_Capacity : MonoBehaviour
 {
-    // Capacity
     [SerializeField] private bool _capacity_isUsed = false;
     private float _capacityCooldownTimer = 0.0f;
     [SerializeField] private float _capacityDurationTimer = 5.0f;
@@ -29,13 +28,11 @@ public class SC_Capacity : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
 
-            if (_capacity_isUsed == false)
-            {
+            if (_capacity_isUsed == false) {
                 RaycastHit hit;
                 if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 100.0f, shootLayer))
                 {
-                    if (hit.collider.gameObject != this)
-                    {
+                    if (hit.collider.gameObject != this) {
                         if (_PreviousBumper)
                             Destroy(_PreviousBumper);
                         // Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 2.0f, true);
@@ -44,6 +41,7 @@ public class SC_Capacity : MonoBehaviour
                         _capacityCooldownTimer = 0.0f;
                         _capacityLoadValue = 0.0f;
                         _PreviousBumper = Instantiate(_prefabBumperCpt, hit.point, Quaternion.LookRotation(hit.normal, Vector3.left));
+                        _PreviousBumper.transform.parent = hit.collider.gameObject.transform;
                     }
                 }
             }
