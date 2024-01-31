@@ -46,6 +46,10 @@ public class SC_Shoot : MonoBehaviour
                 }
                 else
                     Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 2.0f, true);
+                if (hit.collider.gameObject.GetComponent<BreakableWall>() != null)
+                {
+                    hit.collider.gameObject.GetComponent<BreakableWall>().isBroken = true;
+                }
             }
         }
     }
@@ -67,8 +71,17 @@ public class SC_Shoot : MonoBehaviour
                     // Debug.Log(hitColliders[i].gameObject.name);
                     // Instantiate(_impactEffectEnemyFist, hitColliders[i].gameObject.transform.position, Quaternion.LookRotation(hitColliders[i].gameObject.transform.position));
                 }
+                if (hitColliders[i].gameObject.GetComponent<BreakableWall>() != null)
+                {
+                    hitColliders[i].gameObject.GetComponent<BreakableWall>().isBroken = true;
+                }
+                if (hitColliders[i].gameObject.GetComponent <BreakableWallPunch>() != null)
+                {
+                    hitColliders[i].gameObject.GetComponent<BreakableWallPunch>().isBroken = true;
+                }
                 i++;
             }
+            
         }
     }
 }
