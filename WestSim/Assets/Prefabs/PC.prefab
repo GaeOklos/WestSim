@@ -407,15 +407,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 6124075717778377772}
   lookSpeed: 2
-  lookXLimit: 45
-  walkSpeed: 5
-  runSpeed: 10
-  gravity: 10
-  _sprintOctane: 15
+  lookXLimit: 75
+  walkSpeed: 4.5
+  runSpeed: 8
+  gravity: 17
+  _sprintOctane: 12
   _Octane_isUsed: 0
   _OctaneDurationTimer: 5
   _OctaneLoadValue: 0
-  jumpPower: 5
+  jumpPower: 6
   _isWallJumping: 0
   _previousWall: {fileID: 0}
   canMove: 1
