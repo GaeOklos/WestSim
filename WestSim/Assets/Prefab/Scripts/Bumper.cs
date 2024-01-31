@@ -9,9 +9,6 @@ public class Bumper : MonoBehaviour
     {
         SC_Movement _Player = other.gameObject.GetComponent<SC_Movement>();
         if (_Player != null)
-        {
             _Player.Bumper(transform.up);
-            // _Player.Bumper(transform.up);
-        }
     }
 }
