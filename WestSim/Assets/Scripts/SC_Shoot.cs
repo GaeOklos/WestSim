@@ -46,6 +46,10 @@ public class SC_Shoot : MonoBehaviour
                 }
                 else
                     Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 2.0f, true);
+                if (hit.collider.gameObject.GetComponent<BreakableWall>() != null)
+                {
+                    hit.collider.gameObject.GetComponent<BreakableWall>().isBroken = true;
+                }
             }
         }
     }
