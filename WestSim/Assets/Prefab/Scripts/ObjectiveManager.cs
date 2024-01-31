@@ -24,11 +24,6 @@ public class ObjectiveManager : MonoBehaviour
 
     private int objectiveNb;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         TextUpdate();
@@ -40,23 +35,6 @@ public class ObjectiveManager : MonoBehaviour
             thirdText.text = "";
             fourthText.text = "";
             complete.SetActive(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y)) 
-        {
-            firstObjective = true;
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            secondObjective = true;
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            thirdObjective = true;
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            fourthObjective = true;
         }
     }
 
