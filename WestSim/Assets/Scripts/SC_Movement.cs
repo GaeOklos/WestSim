@@ -168,11 +168,12 @@ public class SC_Movement : MonoBehaviour
 
         if (_Octane_isUsed == true) {
             _OctaneCooldownTimer += Time.deltaTime;
+            _OctaneLoadValue = _OctaneCooldownTimer / _OctaneDurationTimer;
             if (_OctaneCooldownTimer >= _OctaneDurationTimer) {
                 _Octane_isUsed = false;
-                _OctaneCooldownTimer = 1.0f;
+                _OctaneCooldownTimer = 0.0f;
+                _OctaneLoadValue = 1f;
             }
-            _OctaneLoadValue = _OctaneCooldownTimer / _OctaneDurationTimer;
         }
     }
 
