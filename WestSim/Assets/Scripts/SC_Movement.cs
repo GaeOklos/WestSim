@@ -46,6 +46,7 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private bool _isBumped = false;
     private Vector3 _bumpVectorDirector;
     private Vector3 _bumpVectorSpeedCurrent;
+    [SerializeField] private float _ForceYBumperInGround = 20f;
 
     [Header("Debug")]
     public bool canMove = true;
@@ -205,9 +206,9 @@ public class SC_Movement : MonoBehaviour
         if (_bumpVectorSpeedCurrent.y <= 0) {
             _bumpVectorSpeedCurrent.y = 7;
         }
-        //else if (_bumpVectorSpeedCurrent.y <=) {
-
-        //m}
+        else if (_bumpVectorSpeedCurrent.y < _ForceYBumperInGround) {
+            _bumpVectorSpeedCurrent.y = _ForceYBumperInGround;
+        }
         moveDirection += _bumpVectorSpeedCurrent;
         Debug.Log(_bumpVectorSpeedCurrent);
 

@@ -28786,6 +28786,10 @@ PrefabInstance:
       propertyPath: bumperUICD
       value: 
       objectReference: {fileID: 346882540}
+    - target: {fileID: 3316667515776553833, guid: 2035bc11d519bc54fbd2bac93b4d9b8c, type: 3}
+      propertyPath: _ForceYBumperInGround
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4955903123071446985, guid: 2035bc11d519bc54fbd2bac93b4d9b8c, type: 3}
       propertyPath: m_Name
       value: PC
