@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class SC_Movement : MonoBehaviour
@@ -25,6 +26,7 @@ public class SC_Movement : MonoBehaviour
     private float _OctaneCooldownTimer = 0.0f;
     [SerializeField] private float _OctaneDurationTimer = 5.0f;
     public float _OctaneLoadValue = 0.0f;
+    public Slider _sliderUICD;
 
 
 
@@ -44,6 +46,7 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private bool _isBumped = false;
     private Vector3 _bumpVectorDirector;
     private Vector3 _bumpVectorSpeedCurrent;
+    [SerializeField] private float _ForceYBumperInGround = 20f;
 
     [Header("Debug")]
     public bool canMove = true;
@@ -157,6 +160,12 @@ public class SC_Movement : MonoBehaviour
     }
     private void OctaneCapacityCooldown()
     {
+        if (_sliderUICD != null) {
+            _sliderUICD.value = _OctaneLoadValue;
+        }
+        else
+            Debug.Log("Error, slider pas int�gr�");
+
         if (_Octane_isUsed == true) {
             _OctaneCooldownTimer += Time.deltaTime;
             if (_OctaneCooldownTimer >= _OctaneDurationTimer) {
@@ -197,9 +206,9 @@ public class SC_Movement : MonoBehaviour
         if (_bumpVectorSpeedCurrent.y <= 0) {
             _bumpVectorSpeedCurrent.y = 7;
         }
-        //else if (_bumpVectorSpeedCurrent.y <=) {
-
-        //}
+        else if (_bumpVectorSpeedCurrent.y < _ForceYBumperInGround) {
+            _bumpVectorSpeedCurrent.y = _ForceYBumperInGround;
+        }
         moveDirection += _bumpVectorSpeedCurrent;
         Debug.Log(_bumpVectorSpeedCurrent);
 
