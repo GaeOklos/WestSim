@@ -54,9 +54,10 @@ public class SC_Movement : MonoBehaviour
 
     [Header("Debug")]
     public bool canMove = true;
+    [SerializeField] private List<Collider> hitColliders;
     // [SerializeField] private SphereCollider _sphereCollider;
 
-    
+
     CharacterController characterController;
     void Start()
     {
@@ -169,10 +170,9 @@ public class SC_Movement : MonoBehaviour
         if (_sliderUICD != null)
             _sliderUICD.value = _OctaneLoadValue;
         else
-            Debug.LogError("Error, slider pas int�gr�");
+            Debug.LogError("Error, slider pas integre");
 
-        if (_OctaneTimerOn == true)
-        {
+        if (_OctaneTimerOn == true) {
             _OctaneCooldownTimer += Time.deltaTime;
             _OctaneLoadValue = _OctaneCooldownTimer / _OctaneDurationCooldown;
             if (_OctaneCooldownTimer >= _OctaneDurationCooldown)
@@ -185,25 +185,29 @@ public class SC_Movement : MonoBehaviour
     }
     private void OctaneCapacityTimeUse()
     {
-        if (_Octane_isUsed == true)
-        {
+        if (_Octane_isUsed == true) {
             _OctaneTimeUsing += Time.deltaTime;
-            if (_OctaneTimeUsing >= _OctaneDuration)
-            {
+            if (_OctaneTimeUsing >= _OctaneDuration) {
                 _Octane_isUsed = false;
                 _OctaneTimeUsing = 0.0f;
             }
         }
     }
-
     public void FindWall()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
+        debugWall = false;
+        Collider[] azerty = Physics.OverlapSphere(transform.position, 0.6f);
+        hitColliders.Clear();
+        for (int j = 0; j < azerty.Length; j++)
+            hitColliders.Add(azerty[j]);
+
         int i = 0;
-        while (i < hitColliders.Length)
+        while (i < hitColliders.Count)
         {
-            if (hitColliders[i].gameObject.CompareTag("Wall")) {
-                if (hitColliders[i].gameObject != _previousWall) {
+            if (hitColliders[i].gameObject.CompareTag("Wall"))
+            {
+                if (hitColliders[i].gameObject != _previousWall)
+                {
                     _previousWall = hitColliders[i].gameObject;
                     _isWallJumping = true;
                     debugWall = true;
@@ -211,11 +215,12 @@ public class SC_Movement : MonoBehaviour
             }
             i++;
         }
+
         if (debugWall == false) {
             _isWallJumping = false;
             _previousWall = null;
+            Debug.Log("Debug");
         }
-        debugWall = false;
     }
     
 
