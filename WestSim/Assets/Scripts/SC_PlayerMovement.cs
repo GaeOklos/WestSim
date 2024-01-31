@@ -5,7 +5,6 @@ using TMPro;
 
 public class SC_PlayerMovement : MonoBehaviour
 {
-
     [Header("Movement")]
     public float moveSpeed = 7.0f;
     public float walkSpeed  = 10.0f;
@@ -65,7 +64,6 @@ public class SC_PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
-
         startYScale = transform.localScale.y;
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class SC_Movement : MonoBehaviour
@@ -25,6 +26,7 @@ public class SC_Movement : MonoBehaviour
     private float _OctaneCooldownTimer = 0.0f;
     [SerializeField] private float _OctaneDurationTimer = 5.0f;
     public float _OctaneLoadValue = 0.0f;
+    public Slider _sliderUICD;
 
 
 
@@ -157,6 +159,12 @@ public class SC_Movement : MonoBehaviour
     }
     private void OctaneCapacityCooldown()
     {
+        if (_sliderUICD != null) {
+            _sliderUICD.value = _OctaneLoadValue;
+        }
+        else
+            Debug.Log("Error, slider pas int�gr�");
+
         if (_Octane_isUsed == true) {
             _OctaneCooldownTimer += Time.deltaTime;
             if (_OctaneCooldownTimer >= _OctaneDurationTimer) {
@@ -199,7 +207,7 @@ public class SC_Movement : MonoBehaviour
         }
         //else if (_bumpVectorSpeedCurrent.y <=) {
 
-        //}
+        //m}
         moveDirection += _bumpVectorSpeedCurrent;
         Debug.Log(_bumpVectorSpeedCurrent);
 
