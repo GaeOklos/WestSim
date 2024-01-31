@@ -12,6 +12,7 @@ public class SC_Enemy : MonoBehaviour
         life -= _dmgTotake;
         if (life <= 0) {
             // Rotatetoward
+            Destroy(gameObject, 1);
         }
     }
 
