@@ -79,6 +79,12 @@ public class SC_Shoot : MonoBehaviour
                 {
                     hitColliders[i].gameObject.GetComponent<BreakableWallPunch>().isBroken = true;
                 }
+                if (hitColliders[i].gameObject.GetComponent<ChateauDeau>() != null)
+                {
+                    hitColliders[i].gameObject.GetComponent<ChateauDeau>().hit++;
+                    hitColliders[i].gameObject.GetComponent<ChateauDeau>().Hit();
+
+                }
                 i++;
             }
             
