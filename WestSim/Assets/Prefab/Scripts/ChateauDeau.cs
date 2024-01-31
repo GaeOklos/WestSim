@@ -15,4 +15,12 @@ public class ChateauDeau : MonoBehaviour
             animator.Play("ChateauFall");
         }
     }
+
+    public void Hit()
+    {
+        if (hitNeeded != hit)
+        {
+            animator.Play("Pied");
+        }
+    }
 }
