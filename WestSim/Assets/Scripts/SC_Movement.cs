@@ -25,7 +25,7 @@ public class SC_Movement : MonoBehaviour
     [Header("MaxSprintOctane")]
     [SerializeField] private float _sprintOctane = 15f;
     [SerializeField] private bool _OctaneTimerOn = false;
-    [SerializeField] private bool _Octane_isUsed = false;
+    [SerializeField] public bool _Octane_isUsed = false;
     private float _OctaneTimeUsing = 0.0f;
     private float _OctaneCooldownTimer = 0.0f;
     [SerializeField] private float _OctaneDurationCooldown = 10.0f;
