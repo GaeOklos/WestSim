@@ -139,6 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6737281672754496384}
   - {fileID: 8068023765146623006}
   - {fileID: 8894939632825058060}
   - {fileID: 5284780510579817214}
@@ -343,6 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 244240467951978203}
+  - component: {fileID: 2034171824148328791}
   m_Layer: 2
   m_Name: LeftRotate
   m_TagString: Untagged
@@ -366,6 +368,27 @@ Transform:
   - {fileID: 6873977008146926498}
   m_Father: {fileID: 8242331283182301509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2034171824148328791
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652022540958661878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c30e6c6f888f11640a496e16ddee982d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4955903123071446985
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +426,6 @@ Transform:
   m_Children:
   - {fileID: 8242331283182301509}
   - {fileID: 3608945962151078916}
-  - {fileID: 6737281672754496384}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8057274674396387572
@@ -495,6 +517,10 @@ MonoBehaviour:
   _muzzleFlashFist: {fileID: 8926484042661614526, guid: 97264c8dd8e7ba747a1244f751b6e278, type: 3}
   _impactEffectEnemyFist: {fileID: 8926484042661614526, guid: 188cdca6e003d744e8c06a8c71f9df46, type: 3}
   _impactEffectWallFist: {fileID: 8926484042661614526, guid: c68bb0812812c954788c5a266dba894e, type: 3}
+  punchAnimator: {fileID: 2034171824148328791}
+  canPunch: 1
+  _punchRate: 0
+  _punchCoolDown: 0
   _debugMode: 0
 --- !u!114 &3263849693089231835
 MonoBehaviour:
@@ -622,12 +648,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5575620338565847959}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13399994, y: 0, z: 0.75}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.13399982, y: -0.6, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7491772885814034286}
+  m_Father: {fileID: 8242331283182301509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5657885504911666409
 GameObject:
