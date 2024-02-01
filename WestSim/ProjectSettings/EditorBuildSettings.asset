@@ -5,11 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 3db1837cc97a95e4c98610966fac2b0b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 02f183f1c942f094982e17cfbd93652c
   - enabled: 1
     path: Assets/Scenes/LOIC.unity
     guid: 022fda2c4ecaea7449ff00a952932636
+  - enabled: 1
+    path: Assets/Scenes/LOIC Trotinette.unity
+    guid: bcdfb3ce35d2c74459dc12ed77689380
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 3db1837cc97a95e4c98610966fac2b0b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

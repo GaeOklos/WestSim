@@ -12,6 +12,7 @@ public class SC_Capacity : MonoBehaviour
     public Slider bumperUICD;
     [SerializeField] private GameObject _mainCamera;
     [SerializeField] private GameObject _prefabBumperCpt;
+
     public LayerMask shootLayer;
     private GameObject _PreviousBumper;
 

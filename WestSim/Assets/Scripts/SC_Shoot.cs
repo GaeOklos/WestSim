@@ -12,6 +12,12 @@ public class SC_Shoot : MonoBehaviour
     [SerializeField] private GameObject _prefabWeapon;
     [SerializeField] private int _damageWeapon = 10;
     [SerializeField] private float _rangeWeapon = 100.0f;
+    [SerializeField] private bool canShoot = true;
+    [SerializeField] private float _fireRateWeapon = 0.4f;
+    [SerializeField] private float _TimerCooldown = 0.0f;
+    [SerializeField] private Animator _animator;
+    private bool _TimerOn = false;
+
     [SerializeField] private VisualEffect _muzzleFlash;
     [SerializeField] private GameObject _muzzlePosition;
     [SerializeField] private VisualEffect _impactEffectEnemyWeapon;
@@ -28,27 +34,31 @@ public class SC_Shoot : MonoBehaviour
     [SerializeField] private bool _debugMode = false;
     private void Update()
     {
+        CooldownShoot();
         Shoot();
         FistHit();
     }
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot == true)
         {
+            canShoot = false;
+            _TimerOn = true;
+
             VisualEffect newMuzzle = Instantiate(_muzzleFlash, _muzzlePosition.transform.position, this.transform.rotation);
             newMuzzle.transform.parent = _muzzlePosition.transform;
             newMuzzle.Play();
             Destroy(newMuzzle.gameObject, 1.0f);
+            _animator.SetTrigger("Reload");
 
             RaycastHit hit;
             if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, _rangeWeapon))
             {
-                if (hit.collider.gameObject.GetComponent<SC_Enemy>() != null) {
-                    hit.collider.gameObject.GetComponent<SC_Enemy>().TakeDamage(_damageWeapon);
+                if (hit.collider.gameObject.GetComponent<SC_EnyShoot>() != null) {
+                    hit.collider.gameObject.GetComponent<SC_EnyShoot>().TakeDamage(_damageWeapon);
                     Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.blue, 2.0f, true);
                     // Debug.Log(hit.transform.name);
                     VisualEffect newImpact = Instantiate(_impactEffectEnemyWeapon, hit.point, Quaternion.LookRotation(hit.normal));
-                    newImpact.transform.parent = hit.collider.gameObject.transform;
                     newImpact.Play();
                     Destroy(newImpact.gameObject, 1.0f);
                 }
@@ -62,6 +72,19 @@ public class SC_Shoot : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<BreakableWall>().isBroken = true;
                 }
+            }
+        }
+    }
+
+    private void CooldownShoot()
+    {
+        if (_TimerOn == true) {
+            _TimerCooldown += Time.deltaTime;
+            if (_TimerCooldown >= _fireRateWeapon)
+            {
+                _TimerOn = false;
+                _TimerCooldown = 0.0f;
+                canShoot = true;
             }
         }
     }

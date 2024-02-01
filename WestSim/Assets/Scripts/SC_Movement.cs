@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(CharacterController))]
 public class SC_Movement : MonoBehaviour
@@ -16,6 +17,7 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float gravity = 10f;
+    [SerializeField] private int life = 100;
 
     private float curSpeedX;
     private float curSpeedY;
@@ -30,6 +32,7 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private float _OctaneDuration = 5.0f;
     private float _OctaneLoadValue = 1.0f;
     public Slider _sliderUICD;
+    [SerializeField] private VisualEffect _vfxOctane;
 
 
 
@@ -64,6 +67,7 @@ public class SC_Movement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _vfxOctane.Stop();
     }
 
     void Update()
@@ -130,6 +134,14 @@ public class SC_Movement : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int _dmgTotake)
+    {
+        life -= _dmgTotake;
+        if (life <= 0) {
+            // Destroy(gameObject);
+        }
+    }
+
     private void DecreaseSpeedBumper()
     {
         if (_isBumped == true) {
@@ -144,14 +156,17 @@ public class SC_Movement : MonoBehaviour
         if (isRunning == true && _Octane_isUsed == true && canMove == true) {
             curSpeedX = _sprintOctane * Input.GetAxis("Vertical");
             curSpeedY = _sprintOctane * Input.GetAxis("Horizontal");
+            playerCamera.fieldOfView = 75;
         }
         else if (isRunning == true && canMove == true){
             curSpeedX = runSpeed * Input.GetAxis("Vertical");
             curSpeedY = runSpeed * Input.GetAxis("Horizontal");
+            playerCamera.fieldOfView = 65;
         }
         else if (isRunning == false && canMove == true) {
             curSpeedX = walkSpeed * Input.GetAxis("Vertical");
             curSpeedY = walkSpeed * Input.GetAxis("Horizontal");
+            playerCamera.fieldOfView = 65;
         }
         return new Vector2(curSpeedX, curSpeedY);
     }
@@ -159,6 +174,7 @@ public class SC_Movement : MonoBehaviour
     {
         if (_OctaneTimerOn == false)
         {
+            _vfxOctane.Play();
             _Octane_isUsed = true;
             _OctaneTimerOn = true;
             _OctaneCooldownTimer = 0.0f;
@@ -190,6 +206,7 @@ public class SC_Movement : MonoBehaviour
             if (_OctaneTimeUsing >= _OctaneDuration) {
                 _Octane_isUsed = false;
                 _OctaneTimeUsing = 0.0f;
+                _vfxOctane.Stop();
             }
         }
     }
