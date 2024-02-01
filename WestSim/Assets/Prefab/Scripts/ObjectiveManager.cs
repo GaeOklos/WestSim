@@ -11,6 +11,7 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI thirdText;
     [SerializeField] private TextMeshProUGUI fourthText;
     [SerializeField] private GameObject complete;
+    [SerializeField] private Timer timer;
 
     public bool firstObjective = false;
     public bool secondObjective = false;
@@ -35,6 +36,7 @@ public class ObjectiveManager : MonoBehaviour
             thirdText.text = "";
             fourthText.text = "";
             complete.SetActive(true);
+            timer.StopTimer();
         }
     }
 

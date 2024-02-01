@@ -6,6 +6,10 @@ public class BreakableWall : MonoBehaviour
 {
     public bool isBroken = false;
 
+    public bool isGlass = false;
+
+    public bool isWood = false;
+
     [SerializeField] GameObject wall;
     [SerializeField] GameObject breakedWall;
 
@@ -23,5 +27,23 @@ public class BreakableWall : MonoBehaviour
             wall.SetActive(false);
             breakedWall.SetActive(true);
         }
+    }
+    public void BreakShoot()
+    {
+        if (isGlass) 
+        {
+            isBroken = true;
+        }
+    }
+    public void BreakPunch()
+    {
+        if (isGlass || isWood)
+        {
+            isBroken = true;
+        }
+    }
+    public void BreakBigPunch()
+    {
+        isBroken = true;
     }
 }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class SC_Project : MonoBehaviour
 {
     // [SerializeField] private float speed = 0.2f;
-    [SerializeField] private List<Collider> hitColliders;
     [SerializeField] private float lifeTime = 5f;
     void Start()
     {
         Destroy(gameObject, lifeTime);
     }
+
     private void Update()
     {
         // Collider[] azerty = Physics.OverlapSphere(transform.position, 0.1f);
@@ -30,23 +30,15 @@ public class SC_Project : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+
+        if (other.CompareTag("Player"))
         {
-            // other.gameObject.GetComponent<SC_Enemy>().TakeDamage(10);
+            other.gameObject.GetComponent<SC_Movement>().TakeDamage(1);
             Destroy(gameObject);
         }
-        else if (other.gameObject.tag == "EnyShoot")
+        else
         {
-            // other.gameObject.GetComponent<SC_EnyShoot>().TakeDamage(10);
-            Destroy(gameObject);
-        }
-        else if (other.gameObject.tag == "Player")
-        {
-            other.gameObject.GetComponent<SC_Movement>().TakeDamage(10);
-            Destroy(gameObject);
-        }
-        else if (other.gameObject.tag == "Wall")
-        {
+            Debug.Log(other.name);
             Destroy(gameObject);
         }
     }

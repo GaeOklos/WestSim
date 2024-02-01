@@ -102,11 +102,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5129486663824610234
 MonoBehaviour:
@@ -120,8 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c3939c3eb41ae429dea726062a5de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitColliders: []
-  lifeTime: 8
+  lifeTime: 100
 --- !u!54 &4556214045129956460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,7 +140,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1843
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

@@ -2866,14 +2866,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  _positionStartShot: {fileID: 0}
+  bulletSpeed: 5
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 4
-  health: 100
   timeBetweenAttacks: 2
   projectile: {fileID: 4437520550458287945, guid: b93bc71ea510b1442ae1f19f815ad343, type: 3}
   attackRange: 5
   playerInAttackRange: 0
+  life: 1
+  objectiveNb: 0
+  _minTimeBetweenAttacks: 0.5
+  _maxTimeBetweenAttacks: 1.5
 --- !u!1 &303614828
 GameObject:
   m_ObjectHideFlags: 0

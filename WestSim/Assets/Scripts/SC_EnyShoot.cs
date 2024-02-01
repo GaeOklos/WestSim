@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,29 +28,111 @@ public class SC_EnyShoot : MonoBehaviour
     [SerializeField] private float _minTimeBetweenAttacks = 0.5f;
     [SerializeField] private float _maxTimeBetweenAttacks = 1.5f;
 
-    public void TakeDamage(int _dmgTotake)
+    public bool isArmored = false;
+    public GameObject armor;
+    public bool isShielded = false;
+    public GameObject shield;
+    private float punchCD;
+
+    private bool canPunch = false;
+    private float _punchCoolDown = 0f;
+    private bool _punchTimerOn = false;
+    private float _punchRate = 0f;
+
+    private void Start()
     {
-        life -= _dmgTotake;
-        if (life <= 0) {
-            GameObject gb = GameObject.FindGameObjectWithTag("ObjectiveManager");
-            ObjectiveManager manager = gb.GetComponent<ObjectiveManager>();
-            if (objectiveNb == 1)
+        canPunch = true;
+        if (isArmored)
+        {
+            armor.SetActive(true);
+        }
+        if (isShielded)
+        {
+            shield.SetActive(true);
+        }
+    }
+
+    public void TakeDamageShoot(int _dmgTotake)
+    {
+        if (isArmored is false)
+        {
+            life -= _dmgTotake;
+            if (life <= 0)
             {
-                manager.firstObjective = true;
+                GameObject gb = GameObject.FindGameObjectWithTag("ObjectiveManager");
+                ObjectiveManager manager = gb.GetComponent<ObjectiveManager>();
+                if (objectiveNb == 1)
+                {
+                    manager.firstObjective = true;
+                }
+                else if (objectiveNb == 2)
+                {
+                    manager.secondObjective = true;
+                }
+                else if (objectiveNb == 3)
+                {
+                    manager.thirdObjective = true;
+                }
+                else if (objectiveNb == 4)
+                {
+                    manager.fourthObjective = true;
+                }
+                Destroy(transform.parent.gameObject);
             }
-            else if (objectiveNb == 2)
+        }
+    }
+
+    public void TakeDamagePunch(int _dmgTotake, float _cooldown)
+    {
+        _punchRate = _cooldown;
+        _punchTimerOn = true;
+        if (canPunch is true)
+        {
+            if (isShielded is true)
             {
-                manager.secondObjective = true;
+                isShielded = false;
             }
-            else if (objectiveNb == 3)
+            else if (isShielded is false)
             {
-                manager.thirdObjective = true;
+                life -= _dmgTotake;
+                if (life <= 0)
+                {
+                    GameObject gb = GameObject.FindGameObjectWithTag("ObjectiveManager");
+                    ObjectiveManager manager = gb.GetComponent<ObjectiveManager>();
+                    if (objectiveNb == 1)
+                    {
+                        manager.firstObjective = true;
+                    }
+                    else if (objectiveNb == 2)
+                    {
+                        manager.secondObjective = true;
+                    }
+                    else if (objectiveNb == 3)
+                    {
+                        manager.thirdObjective = true;
+                    }
+                    else if (objectiveNb == 4)
+                    {
+                        manager.fourthObjective = true;
+                    }
+                    Destroy(transform.parent.gameObject);
+                }
             }
-            else if (objectiveNb == 4)
+            canPunch = false;
+        }
+    }
+
+    private void PunchCD()
+    {
+        if (_punchTimerOn == true)
+        {
+            _punchCoolDown += Time.deltaTime;
+            if (_punchCoolDown >= _punchRate)
             {
-                manager.fourthObjective = true;
+                _punchTimerOn = false;
+                _punchCoolDown = 0.0f;
+                canPunch = true;
             }
-            Destroy(transform.parent.gameObject);
         }
     }
 
@@ -60,10 +143,13 @@ public class SC_EnyShoot : MonoBehaviour
 
     private void Update()
     {
+        PunchCD();
+
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (playerInAttackRange)
             AttackPlayer();
+
     }
 
     private void AttackPlayer()

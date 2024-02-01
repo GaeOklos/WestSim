@@ -17,7 +17,9 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float gravity = 10f;
-    [SerializeField] private int life = 100;
+    [SerializeField] private int life = 4;
+    [SerializeField] private SC_PCLifeCanva _canvaLifeScript;
+    [SerializeField] private GameObject _gameOverMenu;
 
     private float curSpeedX;
     private float curSpeedY;
@@ -25,7 +27,7 @@ public class SC_Movement : MonoBehaviour
     [Header("MaxSprintOctane")]
     [SerializeField] private float _sprintOctane = 15f;
     [SerializeField] private bool _OctaneTimerOn = false;
-    [SerializeField] private bool _Octane_isUsed = false;
+    [SerializeField] public bool _Octane_isUsed = false;
     private float _OctaneTimeUsing = 0.0f;
     private float _OctaneCooldownTimer = 0.0f;
     [SerializeField] private float _OctaneDurationCooldown = 10.0f;
@@ -137,8 +139,10 @@ public class SC_Movement : MonoBehaviour
     public void TakeDamage(int _dmgTotake)
     {
         life -= _dmgTotake;
+        _canvaLifeScript.TakeDamage(_dmgTotake);
         if (life <= 0) {
-            // Destroy(gameObject);
+            _gameOverMenu.SetActive(true);
+            canMove = false;
         }
     }
 
@@ -236,7 +240,6 @@ public class SC_Movement : MonoBehaviour
         if (debugWall == false) {
             _isWallJumping = false;
             _previousWall = null;
-            Debug.Log("Debug");
         }
     }
     
