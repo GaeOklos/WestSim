@@ -70,7 +70,7 @@ public class SC_Shoot : MonoBehaviour
             if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, _rangeWeapon))
             {
                 if (hit.collider.gameObject.GetComponent<SC_EnyShoot>() != null) {
-                    hit.collider.gameObject.GetComponent<SC_EnyShoot>().TakeDamage(_damageWeapon);
+                    hit.collider.gameObject.GetComponent<SC_EnyShoot>().TakeDamageShoot(_damageWeapon);
                     Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.blue, 2.0f, true);
                     // Debug.Log(hit.transform.name);
                     VisualEffect newImpact = Instantiate(_impactEffectEnemyWeapon, hit.point, Quaternion.LookRotation(hit.normal));
@@ -128,9 +128,9 @@ public class SC_Shoot : MonoBehaviour
                 if (moveSc._Octane_isUsed)
                 {
                     Debug.Log("Big Punch");
-                    if (hitColliders[i].gameObject.GetComponent<SC_Enemy>() != null)
+                    if (hitColliders[i].gameObject.GetComponent<SC_EnyShoot>() != null)
                     {
-                        hitColliders[i].gameObject.GetComponent<SC_Enemy>().TakeDamage(_damageFist);
+                        hitColliders[i].gameObject.GetComponent<SC_EnyShoot>().TakeDamagePunch(_damageFist, _punchCoolDown);
                         // Debug.Log(hitColliders[i].gameObject.name);
                         // Instantiate(_impactEffectEnemyFist, hitColliders[i].gameObject.transform.position, Quaternion.LookRotation(hitColliders[i].gameObject.transform.position));
                     }
@@ -147,9 +147,9 @@ public class SC_Shoot : MonoBehaviour
                 } else if (moveSc._Octane_isUsed is false)
                 {
                     Debug.Log("Normal Punch");
-                    if (hitColliders[i].gameObject.GetComponent<SC_Enemy>() != null)
+                    if (hitColliders[i].gameObject.GetComponent<SC_EnyShoot>() != null)
                     {
-                        hitColliders[i].gameObject.GetComponent<SC_Enemy>().TakeDamage(_damageFist);
+                        hitColliders[i].gameObject.GetComponent<SC_EnyShoot>().TakeDamagePunch(_damageFist, _punchCoolDown);
                         // Debug.Log(hitColliders[i].gameObject.name);
                         // Instantiate(_impactEffectEnemyFist, hitColliders[i].gameObject.transform.position, Quaternion.LookRotation(hitColliders[i].gameObject.transform.position));
                     }
