@@ -15,8 +15,15 @@ public class SC_MainMenu : MonoBehaviour
         // Debug.Log("Change to level "+ sceneName);
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         _panelInRef.SetActive(true);
-        _animatorPanel = _panelInRef.GetComponent<Animator>();
-        StartCoroutine(loadNextScene(sceneName));
+        if (_panelInRef.GetComponent<Animator>())
+        {
+            _animatorPanel = _panelInRef.GetComponent<Animator>();
+            StartCoroutine(loadNextScene(sceneName));
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
     public IEnumerator loadNextScene(string sceneName)
     {

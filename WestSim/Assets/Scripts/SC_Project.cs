@@ -38,7 +38,6 @@ public class SC_Project : MonoBehaviour
         }
         else
         {
-            Debug.Log(other.name);
             Destroy(gameObject);
         }
     }

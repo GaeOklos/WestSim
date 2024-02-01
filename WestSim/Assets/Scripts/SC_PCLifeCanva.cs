@@ -20,7 +20,7 @@ public class SC_PCLifeCanva : MonoBehaviour
             _life3.SetActive(false);
         if (_life == 1)
             _life2.SetActive(false);
-        if (_life == 0)
+        if (_life <= 0)
             _life1.SetActive(false);
     }
 }

@@ -8,6 +8,7 @@ public class SC_EnyShoot : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject _positionStartShot;
+    [SerializeField] private GameObject _weapon;
 
     public float bulletSpeed = 5;
 
@@ -155,7 +156,9 @@ public class SC_EnyShoot : MonoBehaviour
     private void AttackPlayer()
     {
         transform.LookAt(player.transform);
+        _weapon.transform.LookAt(player.transform);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
+        // _weapon.transform.eulerAngles = new Vector3(0, _weapon.transform.eulerAngles.y, _weapon.transform.eulerAngles.z);
 
         if (!alreadyAttacked)
         {

@@ -595,7 +595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445108788371351}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 0
 --- !u!95 &2214445108788371351
 Animator:
@@ -1003,7 +1002,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445109006583474}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 1
 --- !u!114 &2214445109006583476
 MonoBehaviour:
@@ -1269,7 +1267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445109094387216}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 0
 --- !u!114 &2214445109094387220
 MonoBehaviour:
@@ -1593,7 +1590,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445109104271391}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 0
 --- !u!95 &2214445109104271391
 Animator:
@@ -2092,7 +2088,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445109398474237}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 0
 --- !u!95 &2214445109398474237
 Animator:
@@ -2807,7 +2802,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: LOIC Trotinette
+          m_StringArgument: LOIC BackToSkate
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2214445109799325119}
@@ -2855,7 +2850,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445109799325116}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 1
 --- !u!1 &2214445109870852608
 GameObject:
@@ -3634,7 +3628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445110292936718}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 1
 --- !u!114 &2214445110292936818
 MonoBehaviour:
@@ -3967,7 +3960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445110307106158}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 0
 --- !u!114 &2214445110328727248
 MonoBehaviour:
@@ -5342,7 +5334,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorButton: {fileID: 2214445110810907080}
-  soundClick: {fileID: 8300000, guid: 0e54a5f7659b9674186ae2fed25f099e, type: 3}
   _isButChangerScene: 0
 --- !u!114 &2214445110810907084
 MonoBehaviour:

@@ -26,6 +26,7 @@ public class SC_Movement : MonoBehaviour
     
     [Header("MaxSprintOctane")]
     [SerializeField] private float _sprintOctane = 15f;
+    [SerializeField] private float _walkOctane = 7f;
     [SerializeField] private bool _OctaneTimerOn = false;
     [SerializeField] public bool _Octane_isUsed = false;
     private float _OctaneTimeUsing = 0.0f;
@@ -157,10 +158,17 @@ public class SC_Movement : MonoBehaviour
     {
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        if (isRunning == true && _Octane_isUsed == true && canMove == true) {
-            curSpeedX = _sprintOctane * Input.GetAxis("Vertical");
-            curSpeedY = _sprintOctane * Input.GetAxis("Horizontal");
-            playerCamera.fieldOfView = 75;
+        if (_Octane_isUsed == true && canMove == true) {
+            if (isRunning == true) {
+                curSpeedX = _sprintOctane * Input.GetAxis("Vertical");
+                curSpeedY = _sprintOctane * Input.GetAxis("Horizontal");
+                playerCamera.fieldOfView = 75;
+            }
+            else {
+                curSpeedX = _walkOctane * Input.GetAxis("Vertical");
+                curSpeedY = _walkOctane * Input.GetAxis("Horizontal");
+                playerCamera.fieldOfView = 67;
+            }
         }
         else if (isRunning == true && canMove == true){
             curSpeedX = runSpeed * Input.GetAxis("Vertical");
