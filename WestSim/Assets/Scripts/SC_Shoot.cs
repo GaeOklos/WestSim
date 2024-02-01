@@ -32,6 +32,15 @@ public class SC_Shoot : MonoBehaviour
     [SerializeField] private VisualEffect _impactEffectWallFist;
 
     [SerializeField] private bool _debugMode = false;
+
+    private SC_Movement moveSc;
+
+    private void Start()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        moveSc = player.GetComponent<SC_Movement>();
+    }
+
     private void Update()
     {
         CooldownShoot();
@@ -68,9 +77,9 @@ public class SC_Shoot : MonoBehaviour
                     newImpact.Play();
                     Destroy(newImpact.gameObject, 1.0f);
                 }
-                if (hit.collider.gameObject.GetComponent<BreakableWall>() != null)
+                if (hit.collider.gameObject.GetComponent<NewBreakable>() != null)
                 {
-                    hit.collider.gameObject.GetComponent<BreakableWall>().isBroken = true;
+                    hit.collider.gameObject.GetComponent<NewBreakable>().BreakShoot();
                 }
             }
         }
@@ -101,24 +110,44 @@ public class SC_Shoot : MonoBehaviour
                 Destroy(_sphereTest, 1);
             }
             while (i < hitColliders.Length) {
-                if (hitColliders[i].gameObject.GetComponent<SC_Enemy>() != null) {
-                    hitColliders[i].gameObject.GetComponent<SC_Enemy>().TakeDamage(_damageFist);
-                    // Debug.Log(hitColliders[i].gameObject.name);
-                    // Instantiate(_impactEffectEnemyFist, hitColliders[i].gameObject.transform.position, Quaternion.LookRotation(hitColliders[i].gameObject.transform.position));
-                }
-                if (hitColliders[i].gameObject.GetComponent<BreakableWall>() != null)
+                if (moveSc._Octane_isUsed)
                 {
-                    hitColliders[i].gameObject.GetComponent<BreakableWall>().isBroken = true;
-                }
-                if (hitColliders[i].gameObject.GetComponent <BreakableWallPunch>() != null)
-                {
-                    hitColliders[i].gameObject.GetComponent<BreakableWallPunch>().isBroken = true;
-                }
-                if (hitColliders[i].gameObject.GetComponent<ChateauDeau>() != null)
-                {
-                    hitColliders[i].gameObject.GetComponent<ChateauDeau>().hit++;
-                    hitColliders[i].gameObject.GetComponent<ChateauDeau>().Hit();
+                    Debug.Log("Big Punch");
+                    if (hitColliders[i].gameObject.GetComponent<SC_Enemy>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<SC_Enemy>().TakeDamage(_damageFist);
+                        // Debug.Log(hitColliders[i].gameObject.name);
+                        // Instantiate(_impactEffectEnemyFist, hitColliders[i].gameObject.transform.position, Quaternion.LookRotation(hitColliders[i].gameObject.transform.position));
+                    }
+                    if (hitColliders[i].gameObject.GetComponent<NewBreakable>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<NewBreakable>().BreakBigPunch();
+                    }
+                    if (hitColliders[i].gameObject.GetComponent<ChateauDeau>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<ChateauDeau>().hit = hitColliders[i].gameObject.GetComponent<ChateauDeau>().hitNeeded;
+                        hitColliders[i].gameObject.GetComponent<ChateauDeau>().Hit();
 
+                    }
+                } else if (moveSc._Octane_isUsed is false)
+                {
+                    Debug.Log("Normal Punch");
+                    if (hitColliders[i].gameObject.GetComponent<SC_Enemy>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<SC_Enemy>().TakeDamage(_damageFist);
+                        // Debug.Log(hitColliders[i].gameObject.name);
+                        // Instantiate(_impactEffectEnemyFist, hitColliders[i].gameObject.transform.position, Quaternion.LookRotation(hitColliders[i].gameObject.transform.position));
+                    }
+                    if (hitColliders[i].gameObject.GetComponent<NewBreakable>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<NewBreakable>().BreakPunch();
+                    }
+                    if (hitColliders[i].gameObject.GetComponent<ChateauDeau>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<ChateauDeau>().hit++;
+                        hitColliders[i].gameObject.GetComponent<ChateauDeau>().Hit();
+
+                    }
                 }
                 i++;
             }
