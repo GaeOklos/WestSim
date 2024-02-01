@@ -17,7 +17,9 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float gravity = 10f;
-    [SerializeField] private int life = 100;
+    [SerializeField] private int life = 4;
+    [SerializeField] private SC_PCLifeCanva _canvaLifeScript;
+    [SerializeField] private GameObject _gameOverMenu;
 
     private float curSpeedX;
     private float curSpeedY;
@@ -137,8 +139,10 @@ public class SC_Movement : MonoBehaviour
     public void TakeDamage(int _dmgTotake)
     {
         life -= _dmgTotake;
+        _canvaLifeScript.TakeDamage(_dmgTotake);
         if (life <= 0) {
-            // Destroy(gameObject);
+            _gameOverMenu.SetActive(true);
+            canMove = false;
         }
     }
 
@@ -236,7 +240,6 @@ public class SC_Movement : MonoBehaviour
         if (debugWall == false) {
             _isWallJumping = false;
             _previousWall = null;
-            Debug.Log("Debug");
         }
     }
     
