@@ -30,15 +30,15 @@ public class SC_Project : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
 
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<SC_Movement>().TakeDamage(10);
+            other.gameObject.GetComponent<SC_Movement>().TakeDamage(1);
             Destroy(gameObject);
         }
         else
         {
+            Debug.Log(other.name);
             Destroy(gameObject);
         }
     }
