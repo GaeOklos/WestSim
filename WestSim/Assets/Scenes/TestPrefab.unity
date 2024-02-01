@@ -9521,10 +9521,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7739737323965032073, guid: b87ab929c2f39254b8c8920b1f18b072, type: 3}
-      propertyPath: m_TagString
-      value: ObjectiveManager
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
