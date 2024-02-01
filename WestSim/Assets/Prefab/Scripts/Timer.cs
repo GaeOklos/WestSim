@@ -19,6 +19,8 @@ public class Timer : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI textfield;
+    [SerializeField]
+    private TextMeshProUGUI textMS;
 
     void Start()
     {
@@ -67,19 +69,23 @@ public class Timer : MonoBehaviour
         float ms = Mathf.FloorToInt(((time % 60) - seconds) * 100);
 
 
-        string currentTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, ms);
+        string currentTime = string.Format("{0:00}: {1:00},", minutes, seconds);
+        string currentMS = string.Format("{0:00}", ms);
 
         textfield.text = currentTime;
+        textMS.text = currentMS;
 
         if (finished is true && backward is false)
         {
             endTimer.text = currentTime;
             textfield.text = "";
+            textMS.text = "";
         }
         if (backward && timer <= 0f)
         {
             gameOver.SetActive(true);
             textfield.text = "Finish";
+            textMS.text = "";
         }
     }
 
