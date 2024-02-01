@@ -30,6 +30,11 @@ public class SC_Shoot : MonoBehaviour
     [SerializeField] private VisualEffect _muzzleFlashFist;
     [SerializeField] private VisualEffect _impactEffectEnemyFist;
     [SerializeField] private VisualEffect _impactEffectWallFist;
+    [SerializeField] private Animator punchAnimator;
+    [SerializeField] private bool canPunch = false;
+    [SerializeField] private float _punchRate = 0f;
+    [SerializeField] private float _punchCoolDown = 0f;
+    private bool _punchTimerOn = false;
 
     [SerializeField] private bool _debugMode = false;
 
@@ -46,6 +51,7 @@ public class SC_Shoot : MonoBehaviour
         CooldownShoot();
         Shoot();
         FistHit();
+        FistCoolDown();
     }
     private void Shoot()
     {
@@ -100,8 +106,17 @@ public class SC_Shoot : MonoBehaviour
 
     private void FistHit()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canPunch)
         {
+            _punchTimerOn = true;
+            canPunch = false;
+            if (moveSc._Octane_isUsed)
+            {
+                punchAnimator.Play("BigPunch");
+            } else if (moveSc._Octane_isUsed is false)
+            {
+                punchAnimator.Play("Punch");
+            }
             Collider[] hitColliders = Physics.OverlapSphere(_spawnCollider.transform.position, _rangeFist);
             int i = 0;
             if (_debugMode == true) {
@@ -152,6 +167,20 @@ public class SC_Shoot : MonoBehaviour
                 i++;
             }
             
+        }
+    }
+
+    private void FistCoolDown()
+    {
+        if (_punchTimerOn == true)
+        {
+            _punchCoolDown += Time.deltaTime;
+            if (_punchCoolDown >= _punchRate)
+            {
+                _punchTimerOn = false;
+                _punchCoolDown = 0.0f;
+                canPunch = true;
+            }
         }
     }
 }
