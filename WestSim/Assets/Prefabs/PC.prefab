@@ -594,7 +594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8068023765146623006}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: VfxMuzzlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,6 +624,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8242331283182301509}
     m_Modifications:
+    - target: {fileID: -9186615357477263094, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8819389296039750455, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.1198862
@@ -676,9 +684,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -398321088993075008, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -35384191434331144, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Name
       value: Colt_Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955991291330037490, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231792386248568762, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127641457284333094, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424521930301188343, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624221014264151891, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107840663086344392, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
