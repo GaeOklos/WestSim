@@ -12,7 +12,9 @@ public class Prisoner : MonoBehaviour
     private bool liberable = false;
     private bool libere = false;
     private ObjectiveManager manager;
-    private bool echec = false;
+    public bool echec = false;
+
+    private bool gotGB = false;
 
     void Start()
     {
@@ -50,6 +52,12 @@ public class Prisoner : MonoBehaviour
         }
         if (echec)
         {
+            if (gotGB is false)
+            {
+                GameObject gb = GameObject.FindGameObjectWithTag("ObjectiveManager");
+                manager = gb.GetComponent<ObjectiveManager>();
+                gotGB = true;
+            }
             libere = false;
             attached.SetActive(false);
             free.SetActive(false);
