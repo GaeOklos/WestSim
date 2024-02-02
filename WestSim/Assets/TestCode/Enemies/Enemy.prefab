@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 24dec1606570cdf4c842c98a60911e8a, type: 2}
+  - {fileID: 2100000, guid: ad7596f0acaeee94e94ebedeb6de1a3c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -606,6 +606,7 @@ MonoBehaviour:
   player: {fileID: 0}
   _positionStartShot: {fileID: 8166294177902124708}
   _weapon: {fileID: 6928313675350618845}
+  _canShoot: 1
   bulletSpeed: 40
   whatIsPlayer:
     serializedVersion: 2
