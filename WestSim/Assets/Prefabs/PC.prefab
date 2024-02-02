@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6124075717778377772}
   - component: {fileID: 4676535049997603609}
   - component: {fileID: 9094820867204124514}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 244240467951978203}
   - component: {fileID: 2034171824148328791}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftRotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 3263849693089231835}
   - component: {fileID: 6024510847986223292}
   - component: {fileID: 6451733694215490690}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PC
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6737281672754496384}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColliderSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 5928969198459292636}
   - component: {fileID: 5101906795951210791}
   - component: {fileID: 4938352511543039703}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visual Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8068023765146623006}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VfxMuzzlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5037556005501382818}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,6 +832,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: axe
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 35f4d61fd5c7fec4da02685a6e665965, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -852,11 +856,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9186615357477263094, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8819389296039750455, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_LocalScale.x
@@ -912,11 +916,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -398321088993075008, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -35384191434331144, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Name
@@ -924,31 +928,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1955991291330037490, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2231792386248568762, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3127641457284333094, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4424521930301188343, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4624221014264151891, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5107840663086344392, guid: dd07656eef01f954486c17e3ad52c95e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

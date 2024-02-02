@@ -152,6 +152,7 @@ public class SC_EnyShoot : MonoBehaviour
         PunchCD();
 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
         if (_canShoot == true) {
             if (playerInAttackRange)
                 AttackPlayer();
