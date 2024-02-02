@@ -87,6 +87,7 @@ public class Timer : MonoBehaviour
         {
             gameOver.SetActive(true);
             textfield.text = "Finish";
+            textfield.text = "";
             textMS.text = "";
         }
     }
