@@ -8,9 +8,11 @@ public class Prisoner : MonoBehaviour
     [SerializeField] public GameObject interactIcon;
     [SerializeField] public GameObject attached;
     [SerializeField] public GameObject free;
+    [SerializeField] public GameObject dead;
     private bool liberable = false;
     private bool libere = false;
     private ObjectiveManager manager;
+    private bool echec = false;
 
     void Start()
     {
@@ -45,6 +47,30 @@ public class Prisoner : MonoBehaviour
             attached.SetActive(false);
             free.SetActive(true);
             interactIcon.SetActive(false);
+        }
+        if (echec)
+        {
+            libere = false;
+            attached.SetActive(false);
+            free.SetActive(false);
+            dead.SetActive(true);
+            interactIcon.SetActive(false);
+            if (objectiveNb == 1)
+            {
+                manager.firstObjectiveFailed = true;
+            }
+            else if (objectiveNb == 2)
+            {
+                manager.secondObjectiveFailed = true;
+            }
+            else if (objectiveNb == 3)
+            {
+                manager.thirdObjectiveFailed = true;
+            }
+            else if (objectiveNb == 4)
+            {
+                manager.fourthObjectiveFailed = true;
+            }
         }
     }
 
