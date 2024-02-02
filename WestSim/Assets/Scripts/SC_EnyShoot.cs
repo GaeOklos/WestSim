@@ -12,7 +12,7 @@ public class SC_EnyShoot : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject _positionStartShot;
     [SerializeField] private GameObject _weapon;
-    public bool _canShoot = true;
+    public bool _canShoot = false;
 
     public float bulletSpeed = 5;
 
@@ -152,9 +152,10 @@ public class SC_EnyShoot : MonoBehaviour
         PunchCD();
 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (playerInAttackRange)
-            AttackPlayer();
+        if (_canShoot == true) {
+            if (playerInAttackRange)
+                AttackPlayer();
+        }
 
     }
 
@@ -173,14 +174,14 @@ public class SC_EnyShoot : MonoBehaviour
             if (Physics.Raycast(_positionStartShot.transform.position, direction, out hit, attackRange))
             {
                 if (hit.transform.CompareTag("Player")) {
-                    Debug.Log(hit);
+                    // Debug.Log("player");
                     var bullet = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation);
                     bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
                     alreadyAttacked = true;
                     Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
                 }
                 else {
-                    // Debug.Log("Missed");
+                    // Debug.Log(hit.collider.name);
                 }
                 // Draw.Line(_positionStartShot.transform.position, hit.point, Color.red, 0.1f);
             }
