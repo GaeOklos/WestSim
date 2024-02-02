@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 24dec1606570cdf4c842c98a60911e8a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
   _maxTimeBetweenAttacks: 3
   isArmored: 0
   armor: {fileID: 0}
-  isShielded: 1
+  isShielded: 0
   shield: {fileID: 5433084212086795287}
 --- !u!4 &982920198617241364 stripped
 Transform:
