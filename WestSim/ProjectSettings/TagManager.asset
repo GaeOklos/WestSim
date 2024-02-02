@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Bumper
   - ObjectiveManager
+  - Timer
   layers:
   - Default
   - TransparentFX
