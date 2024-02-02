@@ -13,6 +13,16 @@ public class MissionStarter : MonoBehaviour
             GameObject gb = GameObject.FindGameObjectWithTag("Timer");
             timer = gb.GetComponent<Timer>();
             timer.StartTimer();
+            EnemyActivator();
+        }
+    }
+
+    private void EnemyActivator()
+    {
+        SC_EnyShoot[] sC_EnyShoots = FindObjectsOfType<SC_EnyShoot>();
+        foreach (var b in sC_EnyShoots)
+        {
+            b._canShoot = true;
         }
     }
 }
