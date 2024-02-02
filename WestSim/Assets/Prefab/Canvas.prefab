@@ -2075,7 +2075,7 @@ GameObject:
   - component: {fileID: 8547018630540657299}
   m_Layer: 5
   m_Name: Timer
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4056,6 +4056,10 @@ MonoBehaviour:
   secondObjective: 0
   thirdObjective: 0
   fourthObjective: 0
+  firstObjectiveFailed: 0
+  secondObjectiveFailed: 0
+  thirdObjectiveFailed: 0
+  fourthObjectiveFailed: 0
 --- !u!1 &7844324243194728196
 GameObject:
   m_ObjectHideFlags: 0
