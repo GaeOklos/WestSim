@@ -51,7 +51,7 @@ public class ObjectiveManager : MonoBehaviour
     public IEnumerator loadNextScene(string sceneName)
     {
         yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void TextUpdate()
