@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 [RequireComponent(typeof(CharacterController))]
 public class SC_Movement : MonoBehaviour
@@ -65,7 +66,6 @@ public class SC_Movement : MonoBehaviour
     public bool canMove = true;
     [SerializeField] private List<Collider> hitColliders;
     // [SerializeField] private SphereCollider _sphereCollider;
-
 
     CharacterController characterController;
     void Start()
@@ -152,8 +152,13 @@ public class SC_Movement : MonoBehaviour
         if (life <= 0) {
             _gameOverMenu.SetActive(true);
             // Wait 2 seconds before restart the game
+            
             StartCoroutine(RestartGame());
-
+            GameObject timerGO = GameObject.FindGameObjectWithTag("Timer");
+            if (timerGO != null)
+                timerGO.GetComponent<Timer>().StopTimer();
+            else
+                Debug.LogError("PAS DE TIMER DANS LA SCENE");
             canMove = false;
         }
     }
@@ -295,7 +300,7 @@ public class SC_Movement : MonoBehaviour
             _bumpVectorSpeedCurrent.y = _ForceYBumperInGround;
         }
         moveDirection += _bumpVectorSpeedCurrent;
-        Debug.Log(_bumpVectorSpeedCurrent);
+        // Debug.Log(_bumpVectorSpeedCurrent);
 
         _isBumped = true;
         // bumpVector = ;

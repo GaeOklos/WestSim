@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
     private bool start = false;
 
     public TextMeshProUGUI endTimer;
+    public TextMeshProUGUI endTimerMs;
     public GameObject gameOver;
 
     [SerializeField]
@@ -78,6 +79,7 @@ public class Timer : MonoBehaviour
         if (finished is true && backward is false)
         {
             endTimer.text = currentTime;
+            endTimerMs.text = currentMS;
             textfield.text = "";
             textMS.text = "";
         }
