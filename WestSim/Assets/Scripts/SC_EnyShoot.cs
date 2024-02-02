@@ -12,6 +12,7 @@ public class SC_EnyShoot : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject _positionStartShot;
     [SerializeField] private GameObject _weapon;
+    public bool _canShoot = true;
 
     public float bulletSpeed = 5;
 
@@ -160,7 +161,7 @@ public class SC_EnyShoot : MonoBehaviour
     private void AttackPlayer()
     {
         transform.LookAt(player.transform);
-        _weapon.transform.LookAt(player.transform);
+        // _weapon.transform.LookAt(player.transform);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
         // _weapon.transform.eulerAngles = new Vector3(0, _weapon.transform.eulerAngles.y, _weapon.transform.eulerAngles.z);
         Vector3 direction = player.transform.position - _positionStartShot.transform.position;
@@ -171,19 +172,24 @@ public class SC_EnyShoot : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(_positionStartShot.transform.position, direction, out hit, attackRange))
             {
-                Debug.DrawLine(_positionStartShot.transform.position, hit.point, Color.red, 0.1f);
+                if (hit.transform.CompareTag("Player")) {
+                    Debug.Log(hit);
+                    var bullet = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation);
+                    bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+                    alreadyAttacked = true;
+                    Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
+                }
+                else {
+                    // Debug.Log("Missed");
+                }
                 // Draw.Line(_positionStartShot.transform.position, hit.point, Color.red, 0.1f);
-                var bullet = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation);
-                bullet.GetComponent<Rigidbody>().velocity = _positionStartShot.transform.forward * bulletSpeed;
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
-                
             }
             else
             {
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
             }
+            Debug.DrawLine(_positionStartShot.transform.position, hit.point, Color.red, 1f);
 
             // Rigidbody rb = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation).GetComponent<Rigidbody>();
             // rb.AddForce(_positionStartShot.transform.forward * 10f, ForceMode.Impulse);
