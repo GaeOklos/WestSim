@@ -25,8 +25,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Armature_Body
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_Parent: {fileID: 2100000, guid: 766fd3ff04aab4745a764d33daac86fa, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_Parent: {fileID: 2100000, guid: 840184eca7ff880469ae044d41eab592, type: 2}
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   - _MASKMAP
@@ -37,7 +37,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2225
   stringTagMap: {}
   disabledShaderPasses:
   - TransparentDepthPrepass
@@ -79,8 +79,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CullMode: 2
     - _IridescenceMask: 0.5
     - _IridescenceThickness: 0.525
     - _MaterialID: 3
+    - _StencilWriteMask: 6
     m_Colors: []
   m_BuildTextureStacks: []
