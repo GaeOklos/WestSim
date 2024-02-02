@@ -57,6 +57,8 @@ public class SC_Movement : MonoBehaviour
     private Vector3 _bumpVectorDirector;
     private Vector3 _bumpVectorSpeedCurrent;
     [SerializeField] private float _ForceYBumperInGround = 20f;
+    private bool _WillBump = false;
+    [SerializeField] private bool _DebugBumper = false;
 
 
     [Header("Debug")]
@@ -68,6 +70,7 @@ public class SC_Movement : MonoBehaviour
     CharacterController characterController;
     void Start()
     {
+        // _bumpForce *= 2.0f;
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -116,6 +119,10 @@ public class SC_Movement : MonoBehaviour
         if (!characterController.isGrounded) {
             moveDirection.y -= gravity * Time.deltaTime;
         }
+        if (_WillBump == true) {
+            Bumping();
+            _WillBump = false;
+        }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
         characterController.Move(moveDirection * Time.deltaTime);
@@ -153,7 +160,7 @@ public class SC_Movement : MonoBehaviour
 
     private IEnumerator RestartGame()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -264,7 +271,22 @@ public class SC_Movement : MonoBehaviour
 
     public void Bumper(Vector3 _vectorDirector)
     {
+        _WillBump = true;
         _bumpVectorDirector = _vectorDirector;
+    }
+
+    private void Bumping()
+    {
+        /*if (_DebugBumper == true)
+        {
+            _bumpForce *= 2.0f;
+            _DebugBumper = false;
+        }
+        else
+        {
+            _bumpForce /= 2.0f;
+            _DebugBumper = true;
+        }*/
         _bumpVectorSpeedCurrent = _bumpVectorDirector * _bumpForce;
         if (_bumpVectorSpeedCurrent.y <= 0) {
             _bumpVectorSpeedCurrent.y = 7;
@@ -273,7 +295,7 @@ public class SC_Movement : MonoBehaviour
             _bumpVectorSpeedCurrent.y = _ForceYBumperInGround;
         }
         moveDirection += _bumpVectorSpeedCurrent;
-        // Debug.Log(_bumpVectorSpeedCurrent);
+        Debug.Log(_bumpVectorSpeedCurrent);
 
         _isBumped = true;
         // bumpVector = ;

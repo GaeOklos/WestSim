@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1626.801, g: 1809.7991, b: 2261.6487, a: 1}
+  m_IndirectSpecularColor: {r: 1626.6526, g: 1809.678, b: 2261.5432, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2867,6 +2867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   _positionStartShot: {fileID: 0}
+  _weapon: {fileID: 0}
   bulletSpeed: 5
   whatIsPlayer:
     serializedVersion: 2
@@ -2879,6 +2880,10 @@ MonoBehaviour:
   objectiveNb: 0
   _minTimeBetweenAttacks: 0.5
   _maxTimeBetweenAttacks: 1.5
+  isArmored: 0
+  armor: {fileID: 0}
+  isShielded: 0
+  shield: {fileID: 0}
 --- !u!1 &303614828
 GameObject:
   m_ObjectHideFlags: 0
