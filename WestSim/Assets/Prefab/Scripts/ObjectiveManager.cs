@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -41,8 +42,16 @@ public class ObjectiveManager : MonoBehaviour
             thirdText.text = "";
             fourthText.text = "";
             complete.SetActive(true);
+            StartCoroutine(loadNextScene("MainMenu"));
             timer.StopTimer();
         }
+    }
+
+    
+    public IEnumerator loadNextScene(string sceneName)
+    {
+        yield return new WaitForSeconds(6f);
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void TextUpdate()
