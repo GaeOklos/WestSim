@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class SC_EnyShoot : MonoBehaviour
 {
@@ -161,17 +163,32 @@ public class SC_EnyShoot : MonoBehaviour
         _weapon.transform.LookAt(player.transform);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
         // _weapon.transform.eulerAngles = new Vector3(0, _weapon.transform.eulerAngles.y, _weapon.transform.eulerAngles.z);
-
+        Vector3 direction = player.transform.position - _positionStartShot.transform.position;
+        direction = direction.normalized;
         if (!alreadyAttacked)
         {
-            // Lance le projectile sur le joueur
+            // Raycast sur le player
+            RaycastHit hit;
+            if (Physics.Raycast(_positionStartShot.transform.position, direction, out hit, attackRange))
+            {
+                Debug.DrawLine(_positionStartShot.transform.position, hit.point, Color.red, 0.1f);
+                // Draw.Line(_positionStartShot.transform.position, hit.point, Color.red, 0.1f);
+                var bullet = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation);
+                bullet.GetComponent<Rigidbody>().velocity = _positionStartShot.transform.forward * bulletSpeed;
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
+                
+            }
+            else
+            {
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
+            }
+
             // Rigidbody rb = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation).GetComponent<Rigidbody>();
             // rb.AddForce(_positionStartShot.transform.forward * 10f, ForceMode.Impulse);
             // rb.AddForce(_positionStartShot.transform.up * 8f, ForceMode.Impulse);
-            var bullet = Instantiate(projectile, _positionStartShot.transform.position, _positionStartShot.transform.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = _positionStartShot.transform.forward * bulletSpeed;
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), Random.Range(_minTimeBetweenAttacks, _maxTimeBetweenAttacks));
+
         }
     }
     private void ResetAttack()
