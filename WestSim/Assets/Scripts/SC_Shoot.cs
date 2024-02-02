@@ -69,6 +69,10 @@ public class SC_Shoot : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, _rangeWeapon))
             {
+                if (hit.collider.gameObject.GetComponent<ColliderPrisoner>() != null)
+                {
+                    hit.collider.gameObject.GetComponent<ColliderPrisoner>().Hitted();
+                }
                 if (hit.collider.gameObject.GetComponent<SC_EnyShoot>() != null) {
                     hit.collider.gameObject.GetComponent<SC_EnyShoot>().TakeDamageShoot(_damageWeapon);
                     Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.blue, 2.0f, true);
@@ -128,6 +132,10 @@ public class SC_Shoot : MonoBehaviour
                 if (moveSc._Octane_isUsed)
                 {
                     Debug.Log("Big Punch");
+                    if (hitColliders[i].gameObject.GetComponent<ColliderPrisoner>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<ColliderPrisoner>().Hitted();
+                    }
                     if (hitColliders[i].gameObject.GetComponent<SC_EnyShoot>() != null)
                     {
                         hitColliders[i].gameObject.GetComponent<SC_EnyShoot>().TakeDamagePunch(_damageFist, _punchCoolDown);
@@ -147,6 +155,10 @@ public class SC_Shoot : MonoBehaviour
                 } else if (moveSc._Octane_isUsed is false)
                 {
                     Debug.Log("Normal Punch");
+                    if (hitColliders[i].gameObject.GetComponent<ColliderPrisoner>() != null)
+                    {
+                        hitColliders[i].gameObject.GetComponent<ColliderPrisoner>().Hitted();
+                    }
                     if (hitColliders[i].gameObject.GetComponent<SC_EnyShoot>() != null)
                     {
                         hitColliders[i].gameObject.GetComponent<SC_EnyShoot>().TakeDamagePunch(_damageFist, _punchCoolDown);

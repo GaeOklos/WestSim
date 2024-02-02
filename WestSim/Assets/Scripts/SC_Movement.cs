@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class SC_Movement : MonoBehaviour
@@ -143,8 +144,17 @@ public class SC_Movement : MonoBehaviour
         _canvaLifeScript.TakeDamage(_dmgTotake);
         if (life <= 0) {
             _gameOverMenu.SetActive(true);
+            // Wait 2 seconds before restart the game
+            StartCoroutine(RestartGame());
+
             canMove = false;
         }
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void DecreaseSpeedBumper()
