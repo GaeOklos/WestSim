@@ -18,6 +18,11 @@ public class ObjectiveManager : MonoBehaviour
     public bool thirdObjective = false;
     public bool fourthObjective = false;
 
+    public bool firstObjectiveFailed = false;
+    public bool secondObjectiveFailed = false;
+    public bool thirdObjectiveFailed = false;
+    public bool fourthObjectiveFailed = false;
+
     private int first = 0;
     private int second = 0;
     private int third = 0;
@@ -60,6 +65,27 @@ public class ObjectiveManager : MonoBehaviour
         if (fourthObjective)
         {
             fourthText.color = Color.green;
+            fourth = 1;
+        }
+
+        if (firstObjectiveFailed)
+        {
+            firstText.color= Color.red;
+            first = 1;
+        }
+        if (secondObjectiveFailed)
+        {
+            secondText.color= Color.red;
+            second = 1;
+        }
+        if (thirdObjectiveFailed)
+        {
+            thirdText.color= Color.red;
+            third = 1;
+        }
+        if (fourthObjectiveFailed)
+        {
+            fourthText.color= Color.red;
             fourth = 1;
         }
     }
