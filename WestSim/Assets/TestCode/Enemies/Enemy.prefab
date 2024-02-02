@@ -606,7 +606,7 @@ MonoBehaviour:
   player: {fileID: 0}
   _positionStartShot: {fileID: 8166294177902124708}
   _weapon: {fileID: 6928313675350618845}
-  bulletSpeed: 60
+  bulletSpeed: 40
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 4
