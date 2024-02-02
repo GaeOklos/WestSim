@@ -295,7 +295,7 @@ public class SC_Movement : MonoBehaviour
             _bumpVectorSpeedCurrent.y = _ForceYBumperInGround;
         }
         moveDirection += _bumpVectorSpeedCurrent;
-        Debug.Log(_bumpVectorSpeedCurrent);
+        // Debug.Log(_bumpVectorSpeedCurrent);
 
         _isBumped = true;
         // bumpVector = ;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class SC_EnyShoot : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class SC_EnyShoot : MonoBehaviour
     private float _punchCoolDown = 0f;
     private bool _punchTimerOn = false;
     private float _punchRate = 0f;
+
 
     private void Start()
     {
