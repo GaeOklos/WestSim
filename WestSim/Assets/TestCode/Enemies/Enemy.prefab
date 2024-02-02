@@ -610,7 +610,7 @@ MonoBehaviour:
   bulletSpeed: 40
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 8
   timeBetweenAttacks: 2
   projectile: {fileID: 4437520550458287945, guid: b93bc71ea510b1442ae1f19f815ad343, type: 3}
   attackRange: 25
